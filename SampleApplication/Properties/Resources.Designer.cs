@@ -196,6 +196,15 @@ namespace SampleApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search Contacts.
+        /// </summary>
+        internal static string MainWindowViewModel_Command_SearchAllContacts {
+            get {
+                return ResourceManager.GetString("MainWindowViewModel_Command_SearchAllContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List Contacts.
         /// </summary>
         internal static string MainWindowViewModel_Command_ViewAllContacts {
@@ -210,6 +219,15 @@ namespace SampleApplication.Properties {
         internal static string MainWindowViewModel_DisplayName {
             get {
                 return ResourceManager.GetString("MainWindowViewModel_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Contacts.
+        /// </summary>
+        internal static string SearchContactsViewModel_DisplayName {
+            get {
+                return ResourceManager.GetString("SearchContactsViewModel_DisplayName", resourceCulture);
             }
         }
     }

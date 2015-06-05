@@ -62,7 +62,11 @@ namespace SampleApplication.ViewModel
 
                 new CommandViewModel(
                     Resources.MainWindowViewModel_Command_CreateNewContacts,
-                    new RelayCommand(param => this.CreateNewContacts()))
+                    new RelayCommand(param => this.CreateNewContacts())),
+
+                new CommandViewModel(
+                Resources.MainWindowViewModel_Command_SearchAllContacts,
+                new RelayCommand(param => this.SearchAllContacts()))
             };
         }
 
@@ -129,6 +133,14 @@ namespace SampleApplication.ViewModel
                 this.Description.Add(workspace);
             }
 
+            this.SetActiveWorkspace(workspace);
+        }
+
+        void SearchAllContacts()
+        {
+            Contact newContacts = Contact.CreateNewContacts();
+            SearchContactsViewModel workspace = new SearchContactsViewModel(newContacts, _contactRepository);
+            this.Description.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }
 

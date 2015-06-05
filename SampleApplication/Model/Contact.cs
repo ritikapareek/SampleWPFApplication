@@ -18,6 +18,11 @@ namespace SampleApplication.Model
             return new Contact ();
         }
 
+        public static Contact SearchAllContacts()
+        {
+            return new Contact();
+        }
+
         public static Contact CreateContact(
             string PhoneNumber,
             string firstName,

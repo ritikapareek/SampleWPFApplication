@@ -22,6 +22,11 @@
         <vw:ContactView />
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:SearchContactsViewModel}">
+        <vw:SearchAllContactsView />
+    </DataTemplate>
+
+
     <!-- 
   This style configures both of the main content areas in the main window.
   -->
