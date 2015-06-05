@@ -139,7 +139,8 @@ namespace SampleApplication.ViewModel
         void SearchAllContacts()
         {
             Contact newContacts = Contact.CreateNewContacts();
-            SearchContactsViewModel workspace = new SearchContactsViewModel(newContacts, _contactRepository);
+            ContactViewModel cvm = new ContactViewModel(newContacts, _contactRepository);
+            SearchContactsViewModel workspace = new SearchContactsViewModel(newContacts, ref cvm, _contactRepository);
             this.Description.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }

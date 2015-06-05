@@ -8,6 +8,7 @@ using SampleApplication.DataAccess;
 using System.Windows.Input;
 using SampleApplication.Properties;
 using System.Collections.ObjectModel;
+using SampleApplication.View;
 
 namespace SampleApplication.ViewModel
 {
@@ -18,15 +19,20 @@ namespace SampleApplication.ViewModel
         #region Fields
 
         readonly Contact _contact;
+        ContactViewModel _cvm;
         readonly ContactRepository _contactRepository;
-        bool _isSelected;
+        readonly List<Contact> _lstSearchedContacts = new List<Contact>();
+        List<ContactViewModel> displaySearch = new List<ContactViewModel>();
+        //bool _isSelected;
         RelayCommand _searchCommand;
-
+        ContactRepository contactSearchRepository;
+        bool _isFound = false;
         #endregion // Fields
 
         #region Constructor
-
-        public SearchContactsViewModel(Contact contact, ContactRepository contactRepository)
+        public SearchContactsViewModel()
+        { }
+        public SearchContactsViewModel(Contact contact,ref ContactViewModel cvm, ContactRepository contactRepository)
         {
             base.DisplayName = Resources.SearchContactsViewModel_DisplayName;
             if (contact == null)
@@ -37,42 +43,33 @@ namespace SampleApplication.ViewModel
 
             _contact = contact;
             _contactRepository = contactRepository;
-        
+           cvm = this._cvm;
         }
 
         #endregion // Constructor
 
         #region Contacts Properties
 
-        public string Email
+
+
+
+        /// <summary>
+        /// Gets/sets whether this Contacts is selected in the UI.
+        /// </summary>
+        public bool IsFound
         {
-            get { return _contact.Email; }
+            get { return _isFound; }
             set
             {
-                if (value == _contact.Email)
+                if (value == _isFound)
                     return;
 
-                _contact.Email = value;
+                _isFound = value;
 
-                base.OnPropertyChanged("Email");
+                base.OnPropertyChanged("IsFound");
             }
         }
-
-        public string FirstName
-        {
-            get { return _contact.FirstName; }
-            set
-            {
-                if (value == _contact.FirstName)
-                    return;
-
-                _contact.FirstName = value;
-
-                base.OnPropertyChanged("FirstName");
-            }
-        }
-
-      
+        
         public string LastName
         {
             get { return _contact.LastName; }
@@ -87,20 +84,7 @@ namespace SampleApplication.ViewModel
             }
         }
 
-        public string PhoneNumber
-        {
-            get { return _contact.PhoneNumber; }
-            set
-            {
-                if (value == _contact.PhoneNumber)
-                    return;
-
-                _contact.PhoneNumber = value;
-
-                base.OnPropertyChanged("PhoneNumber");
-            }
-        }
-
+     
         #endregion // Contacts Properties
 
         #region Presentation Properties
@@ -109,22 +93,6 @@ namespace SampleApplication.ViewModel
 
        
 
-        /// <summary>
-        /// Gets/sets whether this Contacts is selected in the UI.
-        /// </summary>
-        public bool IsSelected
-        {
-            get { return _isSelected; }
-            set
-            {
-                if (value == _isSelected)
-                    return;
-
-                _isSelected = value;
-
-                base.OnPropertyChanged("IsSelected");
-            }
-        }
 
         /// <summary>
         /// Returns a command that saves the Contacts.
@@ -136,7 +104,8 @@ namespace SampleApplication.ViewModel
                 if (_searchCommand == null)
                 {
                     _searchCommand = new RelayCommand(
-                        param => this.Search()
+                        param => this.Search(),
+                        param => this.CanSearch
                         
                         );
                 }
@@ -144,56 +113,85 @@ namespace SampleApplication.ViewModel
             }
         }
 
+        /// <summary>
+        /// Returns true if the Contacts is valid and can be saved.
+        /// </summary>
+        bool CanSearch
+        {
+            get { return _contact.IsValidSearch; }
+        }
+
         #endregion // Presentation Properties
         public ObservableCollection<ContactViewModel> AllContacts { get; private set; }
         #region Public Methods
 
         /// <summary>
-        /// Saves the Contacts to the repository.  This method is invoked by the SaveCommand.
+        /// Saves the Contacts to the repository.  This method is invoked by the SeacrhCommand.
         /// </summary>
         public void Search()
         {
+            if (!_contact.IsValidSearch)
+                throw new InvalidOperationException(Resources.ContactViewModel_Exception_CannotSearch);
+
+            _isFound = false;
+            OnPropertyChanged("IsFound");
             string searchLastName= string.Empty;
-            string searchPhoneNumber = string.Empty;
+           
 
-            if (!string.IsNullOrEmpty(this.LastName) || !string.IsNullOrEmpty(this.PhoneNumber))
+            if (!string.IsNullOrEmpty(this.LastName))
             {
-                if (!string.IsNullOrEmpty(this.LastName))
-                {
-                     searchLastName = this.LastName.ToLower();
-                }
-
-                if (!string.IsNullOrEmpty(this.PhoneNumber))
-                {
-                     searchPhoneNumber = this.PhoneNumber.ToLower();
-                }
+                searchLastName = this.LastName.ToLower();
+               
 
                 List<ContactViewModel> all =
                (from cont in _contactRepository.GetContacts()
                 select new ContactViewModel(cont, _contactRepository)).ToList();
                 this.AllContacts = new ObservableCollection<ContactViewModel>(all);
 
-                foreach (ContactViewModel cvm in AllContacts)
+                Contact contact = new Contact();
+               
+                
+                foreach (ContactViewModel cvmTemp in AllContacts)
                 {
-                    if (cvm.LastName.ToLower().Contains(searchLastName) || cvm.PhoneNumber.ToLower().Contains(searchPhoneNumber))
+                    if (cvmTemp.LastName.ToLower().Contains(searchLastName))
                     {
+                        displaySearch.Add(cvmTemp);
+                        contact.FirstName = cvmTemp.FirstName;
+                        contact.LastName = cvmTemp.LastName;
+                        contact.Email = cvmTemp.Email;
+                        contact.PhoneNumber = cvmTemp.PhoneNumber;
 
+                        _lstSearchedContacts.Add(contact);
+                        _isFound = true;
+                       
+                       
                     }
+
+                  
+                   
+                   
                 }
+
+
                
             }
-           
-            
+
+
+            base.OnPropertyChanged("isFound");
             base.OnPropertyChanged("DisplayName");
         }
 
         #endregion // Public Methods
 
+
+  
+
+
     
+     
+      
 
       
-   
-
 
         #region IDataErrorInfo Members
 
@@ -219,9 +217,20 @@ namespace SampleApplication.ViewModel
             }
         }
 
-       
+
 
         #endregion // IDataErrorInfo Members
-     
+
+
+        //#region IDataErrorInfo Members
+
+        //string IDataErrorInfo.Error { get { return null; } }
+
+        //string IDataErrorInfo.this[string propertyName]
+        //{
+        //    get { return this.GetValidationError(propertyName); }
+        //}
+
+        //#endregion // IDataErrorInfo Members
     }
 }

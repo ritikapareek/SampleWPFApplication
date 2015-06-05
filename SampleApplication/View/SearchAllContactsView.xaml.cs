@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SampleApplication.ViewModel;
 
 namespace SampleApplication.View
 {
@@ -19,9 +20,13 @@ namespace SampleApplication.View
     /// </summary>
     public partial class SearchAllContactsView : UserControl
     {
+       
         public SearchAllContactsView()
         {
             InitializeComponent();
+            
         }
+
+        
     }
 }

@@ -193,4 +193,8 @@
     <value>Search Contacts</value>
     <comment>Used to do searching</comment>
   </data>
+  <data name="ContactViewModel_Exception_CannotSearch" xml:space="preserve">
+    <value>Cannot search</value>
+    <comment>Cannot search</comment>
+  </data>
 </root>

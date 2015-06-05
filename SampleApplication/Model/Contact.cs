@@ -38,7 +38,7 @@ namespace SampleApplication.Model
             };
         }
 
-        protected Contact()
+        public Contact()
         {
         }
 
@@ -100,6 +100,18 @@ namespace SampleApplication.Model
             }
         }
 
+        public bool IsValidSearch
+        {
+            get
+            {
+                foreach (string property in ValidatedPropertiesForSearch)
+                    if (GetValidationErrorForSearch(property) != null)
+                        return false;
+
+                return true;
+            }
+        }
+
         static readonly string[] ValidatedProperties = 
         { 
             "Email", 
@@ -107,6 +119,36 @@ namespace SampleApplication.Model
             "LastName",
             "PhoneNumber",
         };
+
+        static readonly string[] ValidatedPropertiesForSearch = 
+        { 
+           
+            "LastName",
+          
+        };
+
+        string GetValidationErrorForSearch(string propertyName)
+        {
+            if (Array.IndexOf(ValidatedProperties, propertyName) < 0)
+                return null;
+
+            string error = null;
+
+            switch (propertyName)
+            {
+
+                case "LastName":
+                    error = this.ValidateLastName();
+                    break;
+
+
+                default:
+
+                    break;
+            }
+
+            return error;
+        }
 
         string GetValidationError(string propertyName)
         {

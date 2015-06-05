@@ -187,6 +187,15 @@ namespace SampleApplication.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot search.
+        /// </summary>
+        internal static string ContactViewModel_Exception_CannotSearch {
+            get {
+                return ResourceManager.GetString("ContactViewModel_Exception_CannotSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Contact.
         /// </summary>
         internal static string MainWindowViewModel_Command_CreateNewContacts {

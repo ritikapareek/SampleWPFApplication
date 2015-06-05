@@ -72,23 +72,8 @@
 
       
 
-        <!-- Phone Number-->
-        <Label 
-      Grid.Row="2" Grid.Column="0" 
-      Content="Phone Number:" 
-      HorizontalAlignment="Right"
-      Target="{Binding ElementName=phoneNumberTxt}" 
-      />
-        <TextBox 
-      x:Name="phoneNumberTxt"
-      Grid.Row="2" Grid.Column="2" 
-      Text="{Binding Path=PhoneNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-      Validation.ErrorTemplate="{x:Null}"
-      />
-        <ContentPresenter
-            Grid.Row="3" Grid.Column="2"
-      Content="{Binding ElementName=phoneNumberTxt, Path=(Validation.Errors).CurrentItem}"
-      />
+       
+       
 
 
 
@@ -97,14 +82,36 @@
       Grid.Row="4" Grid.Column="2"
      x:Name="SearchButton"
       Command="{Binding Path=SearchCommand}"
-      Style="{StaticResource ButtonStyle}"
+     
       Content="Search"
       HorizontalAlignment="Right"
-      Margin="4,2" 
-      MinWidth="60" 
-      />
+      Margin="0,2,4,0" 
+      MinWidth="60"
+            Style="{StaticResource ButtonStyle}" Width="95" Height="26">
+          
+        </Button>
 
-       
+
+
+        <Label  Grid.Row="6" Grid.Column="2">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsFound}" Value="True">
+                            <Setter Property="Content" Value="Contact is present" />
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="Foreground" Value="Green" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Path=IsFound}" Value="False">
+                            <Setter Property="Content" Value="Contact is not present" />
+                            <Setter Property="Background" Value="White"  />
+                            <Setter Property="Foreground" Value="Red" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
     </Grid>
     

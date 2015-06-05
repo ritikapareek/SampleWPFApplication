@@ -43,9 +43,9 @@ namespace SampleApplication.ViewModel
         /// <param name="propertyName">The property that has a new value.</param>
         protected  void OnPropertyChanged(string propertyName)
         {
-           // this.VerifyPropertyName(propertyName);
+            //this.VerifyPropertyName(propertyName);
 
-            //PropertyChangedEventHandler handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = this.PropertyChanged;
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));

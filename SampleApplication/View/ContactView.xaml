@@ -132,8 +132,7 @@
       Style="{StaticResource ButtonStyle}"
       Content="Save"
       HorizontalAlignment="Right"
-      Margin="4,2" 
-      MinWidth="60" 
-      />
+      Margin="0,0,4,2" 
+      MinWidth="60" Width="92" Height="26" />
     </Grid>
 </UserControl>

@@ -9,6 +9,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using SampleApplication.View;
+using SampleApplication.ViewModel;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
