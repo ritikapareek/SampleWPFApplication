@@ -13,11 +13,8 @@
                 <PropertyGroupDescription PropertyName="IsCompany" />
             </CollectionViewSource.GroupDescriptions>
             <CollectionViewSource.SortDescriptions>
-                <!-- 
-        Sort descending by IsCompany so that the 'True' values appear first,
-        which means that companies will always be listed before people.
-        -->
-                <scm:SortDescription PropertyName="IsCompany" Direction="Descending" />
+              
+               
                 <scm:SortDescription PropertyName="DisplayName" Direction="Ascending" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
@@ -34,25 +31,15 @@
             Padding="4,2,0,2"
             Text="People" 
             />
-                    <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=Name}" Value="True">
-                            <Setter TargetName="txt" Property="Text" Value="Companies" />
-                        </DataTrigger>
-                    </DataTemplate.Triggers>
+                   
                 </DataTemplate>
             </GroupStyle.HeaderTemplate>
         </GroupStyle>
 
         <Style x:Key="ContactItemStyle" TargetType="{x:Type ListViewItem}">
-            <!-- 
-      Stretch the content of each cell so that we can 
-      right-align text in the Total Sales column. 
-      -->
+          
             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-            <!-- 
-      Bind the IsSelected property of a ListViewItem to the 
-      IsSelected property of a CustomerViewModel object.
-      -->
+         
             <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}" />
             <Style.Triggers>
                 <MultiTrigger>

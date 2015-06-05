@@ -109,6 +109,11 @@
 
     </SolidColorBrush>
 
+
+    <!--
+  Styling for Button
+  -->
+    
     <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
        
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}" />
@@ -251,6 +256,7 @@
         </Setter>
 
     </Style>
+    
     <!--
   This template explains how to render the list of commands on the left
   side in the main window (the 'Main Menu' area).

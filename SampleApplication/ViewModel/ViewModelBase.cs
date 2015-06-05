@@ -28,7 +28,6 @@ namespace SampleApplication.ViewModel
 
         #endregion // DisplayName
 
-      
 
         #region INotifyPropertyChanged Members
 

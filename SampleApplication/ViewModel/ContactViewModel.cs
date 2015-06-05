@@ -168,7 +168,12 @@ namespace SampleApplication.ViewModel
                 throw new InvalidOperationException(Resources.ContactViewModel_Exception_CannotSave);
 
             if (this.IsNewContact)
+            {
                 _contactRepository.AddContact(_contact);
+                _contactRepository.WriteToXML(_contact);
+            }
+
+            
             
             base.OnPropertyChanged("DisplayName");
         }

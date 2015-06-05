@@ -18,6 +18,7 @@ namespace SampleApplication.ViewModel
 
         ReadOnlyCollection<CommandViewModel> _commands;
         readonly ContactRepository _contactRepository;
+        
         ObservableCollection<WorkspaceViewModel> _Description;
 
         #endregion // Fields
@@ -119,6 +120,7 @@ namespace SampleApplication.ViewModel
             ContactViewModel workspace = new ContactViewModel(newContacts, _contactRepository);
             this.Description.Add(workspace);
             this.SetActiveWorkspace(workspace);
+           
         }
 
         void ShowAllContacts()

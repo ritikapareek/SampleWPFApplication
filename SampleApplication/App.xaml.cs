@@ -7,6 +7,7 @@ using System.Windows;
 using SampleApplication.ViewModel;
 using System.Windows.Markup;
 using System.Globalization;
+using System.IO;
 
 namespace SampleApplication
 {
@@ -17,7 +18,7 @@ namespace SampleApplication
     {
         static App()
         {
-           
+
             FrameworkElement.LanguageProperty.OverrideMetadata(
               typeof(FrameworkElement),
               new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
@@ -31,7 +32,9 @@ namespace SampleApplication
 
             // Create the ViewModel to which 
             // the main window binds.
+            //Loading the xml file using the path.
             string path = "Data/contacts.xml";
+         
             var viewModel = new MainWindowViewModel(path);
 
             // When the ViewModel asks to be closed, 

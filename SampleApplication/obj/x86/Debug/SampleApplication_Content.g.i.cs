@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/customers.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("data/copy%20of%20contacts.xml")]
 
 

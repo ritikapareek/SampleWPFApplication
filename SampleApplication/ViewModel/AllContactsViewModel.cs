@@ -75,8 +75,7 @@ namespace SampleApplication.ViewModel
 
         #endregion // Base Class Overrides
 
-     
-     
+        #region Methods
 
         void OnContactAddedToRepository(object sender, ContactAddedEventArgs e)
         {
@@ -84,5 +83,6 @@ namespace SampleApplication.ViewModel
             this.AllContacts.Add(viewModel);
         }
 
+        #endregion
     }
 }

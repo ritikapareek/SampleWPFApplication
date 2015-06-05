@@ -19,13 +19,13 @@ namespace SampleApplication.ViewModel
         #region Fields
 
         readonly Contact _contact;
-        ContactViewModel _cvm;
+      
         readonly ContactRepository _contactRepository;
         readonly List<Contact> _lstSearchedContacts = new List<Contact>();
         List<ContactViewModel> displaySearch = new List<ContactViewModel>();
-        //bool _isSelected;
+       
         RelayCommand _searchCommand;
-        ContactRepository contactSearchRepository;
+        
         bool _isFound = false;
         #endregion // Fields
 
@@ -43,7 +43,7 @@ namespace SampleApplication.ViewModel
 
             _contact = contact;
             _contactRepository = contactRepository;
-           cvm = this._cvm;
+          
         }
 
         #endregion // Constructor
@@ -51,7 +51,7 @@ namespace SampleApplication.ViewModel
         #region Contacts Properties
 
 
-
+        public ObservableCollection<ContactViewModel> AllContacts { get; private set; }
 
         /// <summary>
         /// Gets/sets whether this Contacts is selected in the UI.
@@ -122,7 +122,7 @@ namespace SampleApplication.ViewModel
         }
 
         #endregion // Presentation Properties
-        public ObservableCollection<ContactViewModel> AllContacts { get; private set; }
+       
         #region Public Methods
 
         /// <summary>
@@ -184,15 +184,6 @@ namespace SampleApplication.ViewModel
         #endregion // Public Methods
 
 
-  
-
-
-    
-     
-      
-
-      
-
         #region IDataErrorInfo Members
 
         string IDataErrorInfo.Error
@@ -222,15 +213,6 @@ namespace SampleApplication.ViewModel
         #endregion // IDataErrorInfo Members
 
 
-        //#region IDataErrorInfo Members
-
-        //string IDataErrorInfo.Error { get { return null; } }
-
-        //string IDataErrorInfo.this[string propertyName]
-        //{
-        //    get { return this.GetValidationError(propertyName); }
-        //}
-
-        //#endregion // IDataErrorInfo Members
+       
     }
 }

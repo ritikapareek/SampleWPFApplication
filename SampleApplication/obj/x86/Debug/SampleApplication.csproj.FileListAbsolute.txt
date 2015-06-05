@@ -1,4 +1,5 @@
 C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\bin\Debug\SampleApplication.exe
+C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\bin\Debug\SampleApplication.pdb
 C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\obj\x86\Debug\View\AllContactsView.baml
 C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\obj\x86\Debug\App.baml
 C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\obj\x86\Debug\MainWindow.g.cs
@@ -18,4 +19,3 @@ C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleAppl
 C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\obj\x86\Debug\SampleApplication.csproj.GenerateResource.Cache
 C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\obj\x86\Debug\SampleApplication.exe
 C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\obj\x86\Debug\SampleApplication.pdb
-C:\Users\Atul\documents\visual studio 2010\Projects\SampleApplication\SampleApplication\bin\Debug\SampleApplication.pdb

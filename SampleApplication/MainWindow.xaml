@@ -9,7 +9,6 @@
     <Window.Resources>
         <ResourceDictionary Source="MainResources.xaml" />
     </Window.Resources>
-    
 
         <Grid Margin="4">
             <Grid.ColumnDefinitions>
@@ -19,28 +18,28 @@
             </Grid.ColumnDefinitions>
 
             <Border 
-        Grid.Column="0" 
-        Style="{StaticResource StyleBorder}"
-        Width="170"
-        >
+                Grid.Column="0" 
+                Style="{StaticResource StyleBorder}"
+                Width="170"
+            >
                 <HeaderedContentControl
-          Content="{Binding Path=Commands}"
-          ContentTemplate="{StaticResource CommandsTemplate}"
-          Header="Main menu"
-          Style="{StaticResource MainHCCStyle}"
-          />
+                Content="{Binding Path=Commands}"
+                ContentTemplate="{StaticResource CommandsTemplate}"
+                Header="Main menu"
+                Style="{StaticResource MainHCCStyle}"
+                />
             </Border>
 
             <Border
-        Grid.Column="2" 
-        Style="{StaticResource StyleBorder}"
-        >
+                Grid.Column="2" 
+                Style="{StaticResource StyleBorder}"
+             >
                 <HeaderedContentControl 
-          Content="{Binding Path=Description}"
-          ContentTemplate="{StaticResource DescriptionTemplate}"
-          Header="Description"
-          Style="{StaticResource MainHCCStyle}"
-          />
+                Content="{Binding Path=Description}"
+                ContentTemplate="{StaticResource DescriptionTemplate}"
+                Header="Description"
+                Style="{StaticResource MainHCCStyle}"
+            />
             </Border>
         </Grid>
  

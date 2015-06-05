@@ -100,6 +100,9 @@ namespace SampleApplication.Model
             }
         }
 
+        /// <summary>
+        /// Validation for search only based on lastname.
+        /// </summary>
         public bool IsValidSearch
         {
             get
@@ -112,6 +115,9 @@ namespace SampleApplication.Model
             }
         }
 
+       /// <summary>
+       /// Validation for new contact details based on , all the fields.
+       /// </summary>
         static readonly string[] ValidatedProperties = 
         { 
             "Email", 
@@ -120,6 +126,9 @@ namespace SampleApplication.Model
             "PhoneNumber",
         };
 
+       /// <summary>
+       /// Validation based on lastname only for searching a contact
+       /// </summary>
         static readonly string[] ValidatedPropertiesForSearch = 
         { 
            
@@ -196,7 +205,6 @@ namespace SampleApplication.Model
             return null;
         }
 
-       //Implement this
         string ValidatePhoneNumber()
         {
 

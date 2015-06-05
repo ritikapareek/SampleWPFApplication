@@ -8,6 +8,7 @@ using System.IO;
 using SampleApplication.Model;
 using System.Xml;
 using System.Xml.Linq;
+using System.Reflection;
 
 namespace SampleApplication.DataAccess
 {
@@ -16,6 +17,7 @@ namespace SampleApplication.DataAccess
         #region Fields
 
         readonly List<Contact> _contacts;
+        string path = "Data/contacts.xml";
 
         #endregion // Fields
 
@@ -82,6 +84,11 @@ namespace SampleApplication.DataAccess
 
         #region Private Helpers
 
+        /// <summary>
+        /// Load contacts from the xml file.
+        /// </summary>
+        /// <param name="contactDataFile"></param>
+        /// <returns></returns>
         static List<Contact> LoadContacts(string contactDataFile)
         {
           //Reading xml file to load the contacts.
@@ -96,7 +103,31 @@ namespace SampleApplication.DataAccess
                         (string)contactElem.Attribute("email")
                          )).ToList();
         }
+        
 
+        /// <summary>
+        /// Write the contacts to a different xml file present in debug folder.
+        /// </summary>
+        /// <param name="newContacts"></param>
+        public void WriteToXML(Contact newContacts)
+        {
+          
+            XDocument doc = XDocument.Load(path);
+           
+            XElement school = doc.Element("contacts");
+            school.Add(new XElement("contact", new XAttribute("lastName", newContacts.LastName),
+                       new XAttribute("firstName", newContacts.FirstName),
+                       new XAttribute("email", newContacts.Email),
+                       new XAttribute("phoneNumber", newContacts.PhoneNumber)));
+                     
+            doc.Save(path);
+        }
+
+        /// <summary>
+        /// For Getting Resource stream
+        /// </summary>
+        /// <param name="resourceFile"></param>
+        /// <returns></returns>
         static Stream GetResourceStream(string resourceFile)
         {
             Uri uri = new Uri(resourceFile, UriKind.RelativeOrAbsolute);
