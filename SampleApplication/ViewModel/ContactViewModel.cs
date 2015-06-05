@@ -225,6 +225,6 @@ namespace SampleApplication.ViewModel
 
         #endregion // IDataErrorInfo Members
      
-    
+ 
     }
 }

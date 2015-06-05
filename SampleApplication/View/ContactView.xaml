@@ -8,7 +8,14 @@
              Width="400"
              
             >
-   
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MainResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
 
     <Grid Margin="4">
         <Grid.ColumnDefinitions>
@@ -122,7 +129,7 @@
       Grid.Row="8" Grid.Column="2"
      
       Command="{Binding Path=SaveCommand}"
-     
+      Style="{StaticResource ButtonStyle}"
       Content="Save"
       HorizontalAlignment="Right"
       Margin="4,2" 

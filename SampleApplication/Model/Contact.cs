@@ -207,8 +207,8 @@ namespace SampleApplication.Model
                 return false;
 
             //Using regex 
-            string pattern = @"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}";
-
+           // string pattern = @"\(?\d{3}\)?-? *\d{3}-? *-?\d{4}";
+            string pattern = @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$";
             return Regex.IsMatch(phoneNumber, pattern, RegexOptions.IgnoreCase);
         }
 
